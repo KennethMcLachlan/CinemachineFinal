@@ -8,12 +8,17 @@ public class CameraShake : MonoBehaviour
     private CinemachineImpulseSource _source;
     void Start()
     {
-        _source = GetComponent<CinemachineImpulseSource>();
-        _source.GenerateImpulse();
+        Impulse();
     }
 
     void Update()
     {
         
+    }
+
+    public void Impulse()
+    {
+        _source = GetComponent<CinemachineImpulseSource>();
+        _source.GenerateImpulse();
     }
 }
