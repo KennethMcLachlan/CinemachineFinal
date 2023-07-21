@@ -53,8 +53,21 @@ public class ShipControls : MonoBehaviour
         Vector3 rotateV = new Vector3(_vertical, 0, 0);
         transform.Rotate(rotateV * _rotSpeed * Time.deltaTime);
 
-        transform.Rotate(new Vector3(0, 0, -_horizontal * 0.2f), Space.Self);
+        //transform.Rotate(new Vector3(0, 0, -_horizontal * 0.2f), Space.Self);
+        Vector3 rotation = transform.rotation.eulerAngles;
 
-        transform.position += transform.right * _currentSpeed * Time.deltaTime;
+        if (transform.rotation.eulerAngles.z > _maxRotate && transform.rotation.eulerAngles.z < 180)
+        {
+            rotation.z = _maxRotate;
+            transform.rotation = Quaternion.Euler(rotation);
+        }
+
+        if (transform.rotation.eulerAngles.z < 360 - _maxRotate && transform.rotation.eulerAngles.z > 180)
+        {
+            rotation.z = 360 - _maxRotate;
+            transform.rotation = Quaternion.Euler(rotation);
+        }
+
+        transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
 }
