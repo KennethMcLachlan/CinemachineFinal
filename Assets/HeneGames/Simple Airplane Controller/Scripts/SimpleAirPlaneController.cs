@@ -123,15 +123,12 @@ namespace HeneGames.Airplane
         [Tooltip("How far must the plane be from the runway before it can be controlled again")]
         [SerializeField] private float takeoffLenght = 30f;
 
-<<<<<<< HEAD
-=======
         [SerializeField]
         private float _maxRotate;
 
         [SerializeField]
         private float _maxYRotate;
 
->>>>>>> fbe91d2e596f4c5fc5037bdd5bb57a35410d988c
         private void Start()
         {
             //Setup speeds
@@ -166,8 +163,6 @@ namespace HeneGames.Airplane
                     TakeoffUpdate();
                     break;
             }
-<<<<<<< HEAD
-=======
 
             Vector3 rotation = transform.rotation.eulerAngles;
 
@@ -199,7 +194,6 @@ namespace HeneGames.Airplane
                 transform.rotation = Quaternion.Euler(rotation);
             }
 
->>>>>>> fbe91d2e596f4c5fc5037bdd5bb57a35410d988c
         }
 
         #region Flying State

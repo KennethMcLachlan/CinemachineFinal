@@ -12,6 +12,9 @@ public class PortalTriggerScript : MonoBehaviour
     [SerializeField]
     private GameObject _dreadnaught;
 
+    [SerializeField]
+    private GameObject _warpAudio;
+
     private void Start()
     {
         //_portalDirector = GetComponent<PlayableDirector>();
@@ -23,7 +26,9 @@ public class PortalTriggerScript : MonoBehaviour
         {
             Debug.Log("Trigger has been hit");
             _dreadnaught.SetActive(true);
+            _warpAudio.SetActive(true);
             _portalDirector.Play();
+            
         }
     }
     // Update is called once per frame

@@ -14,11 +14,11 @@ public class PriorityManager : MonoBehaviour
     [SerializeField]
     private GameObject _vcMultiFX;
 
-    [SerializeField]
-    private GameObject _vcFrontPan;
+    //[SerializeField]
+    //private GameObject _vcFrontPan;
 
-    [SerializeField]
-    private GameObject _blendMotion;
+    //[SerializeField]
+    //private GameObject _blendMotion;
 
     [SerializeField]
     private GameObject[] _cameras;
@@ -39,10 +39,13 @@ public class PriorityManager : MonoBehaviour
 
     private bool _cinemaActive;
 
+    private bool _coroutineEnded;
+
     
     void Start()
     {
         SetLowCamPriorities();
+        _coroutineEnded = true;
     }
 
     
@@ -101,11 +104,13 @@ public class PriorityManager : MonoBehaviour
             _keyIsPressed = true;
             EndCoroutine();
             _keyIsPressed = false;
+            _coroutineEnded = true;
         }
 
         if (_keyIsPressed == false)
         {
             StartCoroutine(CinematicSequence());
+            //_corutineEnded = false;
         }
 
         //if (_cinemaActive == true)
@@ -156,8 +161,12 @@ public class PriorityManager : MonoBehaviour
 
     IEnumerator CinematicSequence()
     {
+        if (_coroutineEnded == true)
+        {
+            yield return new WaitForSeconds(15);
+        }
 
-        yield return new WaitForSeconds(5);
+        _coroutineEnded = false;
 
         _currentCamera = 0;
         SetCurrentCamera();
@@ -174,21 +183,26 @@ public class PriorityManager : MonoBehaviour
 
         yield return new WaitForSeconds(8);
 
-        _currentCamera = 3;
-        SetCurrentCamera();
 
-        yield return new WaitForSeconds(8);
+        //_currentCamera = 3;
+        //SetCurrentCamera();
 
-        _currentCamera = 4;
-        SetCurrentCamera();
+        //yield return new WaitForSeconds(8);
 
-        yield return new WaitForSeconds(8);
+        //_currentCamera = 4;
+        //SetCurrentCamera();
+
+        //yield return new WaitForSeconds(8);
 
         SetLowCamPriorities();
 
         EndCoroutine();
 
         _keyIsPressed = false;
+
+        //_coroutineEnded = false;
+
+
     }
 
 }
